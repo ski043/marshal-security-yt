@@ -1,103 +1,165 @@
-import Image from "next/image";
+import Link from "next/link";
+import {
+  ShieldAlert,
+  Bug,
+  EyeOff,
+  Lock,
+  KeySquare,
+  ShieldCheck,
+} from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="mx-auto max-w-5xl px-6 py-12">
+      <header className="mb-10 space-y-3">
+        <h1 className="text-4xl font-semibold tracking-tight">
+          Next.js Security Pitfalls
+        </h1>
+        <p className="text-base text-muted-foreground">
+          A set of small demos for a YouTube video, showcasing how seemingly
+          harmless patterns can lead to security risks — and how to avoid them.
+        </p>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      <section className="grid gap-4 sm:grid-cols-2">
+        <Link
+          href="/example-1"
+          className="group rounded-xl border bg-card p-5 transition-all hover:shadow-md"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <div className="flex items-start gap-4">
+            <div className="rounded-md bg-primary/10 p-2 text-primary">
+              <ShieldAlert className="size-5" />
+            </div>
+            <div className="space-y-1.5">
+              <h2 className="text-lg font-medium">
+                Example 1 — NPM package risk
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Comparing <code>is-even</code>/<code>is-odd</code> to native
+                logic. Trivial deps increase supply chain risk.
+              </p>
+              <span className="inline-block text-sm text-primary underline underline-offset-4 group-hover:opacity-100">
+                View demo →
+              </span>
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/example-2"
+          className="group rounded-xl border bg-card p-5 transition-all hover:shadow-md"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <div className="flex items-start gap-4">
+            <div className="rounded-md bg-primary/10 p-2 text-primary">
+              <Bug className="size-5" />
+            </div>
+            <div className="space-y-1.5">
+              <h2 className="text-lg font-medium">
+                Example 2 — Validation & Sanitization
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Zod-based validation, open-redirect checks, and safe vs. unsafe
+                rendering (XSS).
+              </p>
+              <span className="inline-block text-sm text-primary underline underline-offset-4 group-hover:opacity-100">
+                View demo →
+              </span>
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/example-3"
+          className="group rounded-xl border bg-card p-5 transition-all hover:shadow-md"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div className="flex items-start gap-4">
+            <div className="rounded-md bg-primary/10 p-2 text-primary">
+              <EyeOff className="size-5" />
+            </div>
+            <div className="space-y-1.5">
+              <h2 className="text-lg font-medium">
+                Example 3 — Env leaks via client
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Why <code>NEXT_PUBLIC_*</code> is public and how secrets leak
+                when passed to client components.
+              </p>
+              <span className="inline-block text-sm text-primary underline underline-offset-4 group-hover:opacity-100">
+                View demo →
+              </span>
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/example-4"
+          className="group rounded-xl border bg-card p-5 transition-all hover:shadow-md"
+        >
+          <div className="flex items-start gap-4">
+            <div className="rounded-md bg-primary/10 p-2 text-primary">
+              <Lock className="size-5" />
+            </div>
+            <div className="space-y-1.5">
+              <h2 className="text-lg font-medium">
+                Example 4 — Data fetching risks
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Fetch public data in Server Components. Mind rate limits and
+                never expose secrets.
+              </p>
+              <span className="inline-block text-sm text-primary underline underline-offset-4 group-hover:opacity-100">
+                View demo →
+              </span>
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/example-5"
+          className="group rounded-xl border bg-card p-5 transition-all hover:shadow-md"
+        >
+          <div className="flex items-start gap-4">
+            <div className="rounded-md bg-primary/10 p-2 text-primary">
+              <KeySquare className="size-5" />
+            </div>
+            <div className="space-y-1.5">
+              <h2 className="text-lg font-medium">
+                Example 5 — Page auth vs middleware
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Middleware helps, but always enforce auth at the page/data
+                layer. Demo with a fake private UI.
+              </p>
+              <span className="inline-block text-sm text-primary underline underline-offset-4 group-hover:opacity-100">
+                View demo →
+              </span>
+            </div>
+          </div>
+        </Link>
+
+        <Link
+          href="/example-6"
+          className="group rounded-xl border bg-card p-5 transition-all hover:shadow-md"
+        >
+          <div className="flex items-start gap-4">
+            <div className="rounded-md bg-primary/10 p-2 text-primary">
+              <ShieldCheck className="size-5" />
+            </div>
+            <div className="space-y-1.5">
+              <h2 className="text-lg font-medium">
+                Example 6 — Security headers
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Why headers like CSP matter and how we’ll use Nosecone in
+                middleware to set them automatically.
+              </p>
+              <span className="inline-block text-sm text-primary underline underline-offset-4 group-hover:opacity-100">
+                View demo →
+              </span>
+            </div>
+          </div>
+        </Link>
+      </section>
     </div>
   );
 }
