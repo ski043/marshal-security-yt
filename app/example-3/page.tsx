@@ -1,7 +1,7 @@
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import { LeakyClient } from "@/components/example-3/leaky-client";
+import { experimental_taintUniqueValue } from "react";
 
 function maskSecret(secret?: string): string {
   if (!secret) return "undefined";
@@ -16,15 +16,17 @@ export default async function ExampleThreePage() {
   const serverSecret = process.env.SERVER_SECRET;
   const publicToken = process.env.NEXT_PUBLIC_PUBLIC_TOKEN;
 
-  /*  const env = { serverSecret };
+  // gives a clear error if the secret leaks.
+  // process keeps the rule active for the whole server process.
+  // serverSecret is the exact sensitive value to block from reaching any Client Component.
 
   if (typeof serverSecret !== "undefined") {
     experimental_taintUniqueValue(
       "Do not pass API keys to the client.",
-      env,
+      process,
       serverSecret
     );
-  } */
+  }
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 space-y-6">

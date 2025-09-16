@@ -1,9 +1,11 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { useState } from "react";
 import { Button } from "../ui/button";
 import UnsafePreview from "./unsafe-preview";
 import SafePreview from "./safe-preview";
+import { validateFormData } from "./schema";
 
 type FormData = {
   name: string;
@@ -23,6 +25,9 @@ export default function SimpleForm() {
     e.preventDefault();
     // No validation or sanitization yet - this will be added later
     setSubmittedContent(formData.content);
+
+    const result = validateFormData(formData);
+    console.log(result);
   };
 
   const handleChange = (
@@ -74,6 +79,7 @@ export default function SimpleForm() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email"
+                required
               />
             </div>
           </div>
@@ -103,8 +109,9 @@ export default function SimpleForm() {
         <div className="border rounded-md p-6 bg-card">
           <h2 className="text-xl font-semibold mb-4">Content Preview:</h2>
           <div className="border-l-4 border-blue-500 pl-4">
-            {/* <SafePreview content={submittedContent} /> */}
-            <UnsafePreview content={submittedContent} />
+            {/* <UnsafePreview content={submittedContent} /> */}
+
+            <SafePreview content={submittedContent} />
           </div>
         </div>
       )}

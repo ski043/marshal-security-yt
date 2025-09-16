@@ -50,8 +50,6 @@ export const formSchema = z.object({
 
 // Type for the form data, inferred from the schema
 export type FormData = z.infer<typeof formSchema>;
-
-// Helper function to validate form data
 export function validateFormData(data: unknown) {
   const result = formSchema.safeParse(data);
 
